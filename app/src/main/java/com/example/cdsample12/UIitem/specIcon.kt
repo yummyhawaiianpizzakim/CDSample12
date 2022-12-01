@@ -1,16 +1,19 @@
 package com.example.cdsample12.UIitem
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.IconToggleButton
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.Check
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,13 +29,63 @@ fun CheckIcon(
     isLoading: Boolean = false
 ) {
     Icon(
-        imageVector = if (isFavourite && !isLoading) Icons.Filled.Check else Icons.Outlined.Check,
+        imageVector = if (isFavourite) Icons.Filled.Favorite else Icons.Filled.Favorite,
         contentDescription = null,
-        tint = if (isFavourite && !isLoading) Color.Black else Color.Blue,
+        tint = if (isFavourite) Color.Blue else Color.Blue.copy(ContentAlpha.disabled),
         modifier = modifier
             .width(25.dp)
             .height(25.dp)
-            .clickable(enabled = !isLoading) { onClick.invoke() }
+            .clickable() { onClick.invoke() }
             .pointerInteropFilter { false }
     )
+}
+
+
+@Composable
+fun IconButtonExample(modifier: Modifier) {
+
+    Row{
+//        IconButton(onClick = {}, modifier = modifier) {
+//            Icon(
+//                Icons.Filled.Favorite,
+//                contentDescription = null
+//            )
+//        }
+
+        var checked by remember { mutableStateOf(false) }
+        var checked2 by remember { mutableStateOf(false) }
+
+        IconToggleButton(
+            checked = checked,
+            onCheckedChange = { checked = it },
+            modifier = modifier
+        ) {
+
+            val tint by animateColorAsState(
+                targetValue = if (checked) Color.Green else Color(0xffB0BEC5),
+                animationSpec = tween(durationMillis = 400)
+            )
+
+            Icon(
+                Icons.Filled.Check, tint = tint,
+                contentDescription = null
+            )
+        }
+        IconToggleButton(
+            checked = checked2,
+            onCheckedChange = { checked2 = it },
+            modifier = modifier
+        ) {
+
+            val tint by animateColorAsState(
+                targetValue = if (checked2) Color(0xffE91E63) else Color(0xffB0BEC5),
+                animationSpec = tween(durationMillis = 400)
+            )
+
+            Icon(
+                Icons.Filled.Delete, tint = tint,
+                contentDescription = null
+            )
+        }
+    }
 }

@@ -44,16 +44,14 @@ fun SettingsAdmin(
 
                 Text(text = "Account")
                 SelectableSettingGroupItem(
-                    title = "aaa",
-                    desc = "",
+                    title = "Sign Out",
                     icon = Icons.Outlined.Person
                 ) {
                     }
                 Spacer(modifier = Modifier.height(100.dp))
                 Text(text = "Admin")
                 SelectableSettingGroupItem(
-                    title = "aaa",
-                    desc = "",
+                    title = "Waiting Request",
                     icon = Icons.Outlined.AccountCircle,
                 ) {
                     onRAClick()
@@ -67,8 +65,7 @@ fun SettingsAdmin(
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 SelectableSettingGroupItem(
-                    title = "aaa",
-                    desc = "",
+                    title = "Manage Room",
                     icon = Icons.Outlined.AccountCircle
                 ) {
                     onRMClick()

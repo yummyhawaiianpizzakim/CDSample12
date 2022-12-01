@@ -2,6 +2,7 @@ package com.example.cdsample12.bottombar
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Indication
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -29,6 +30,8 @@ import com.example.cdsample12.UIitem.SelectableSettingGroupItem
 import java.util.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.DialogProperties
 import com.example.cdsample12.UIitem.DatePicker
@@ -73,50 +76,58 @@ fun ReservingRoom(
                     remember(currentDate, currentTime) {
                         movableContentOf { modifier ->
                             Column(
-                                modifier = modifier.padding(horizontal = 32.dp)
+                                modifier = modifier
+                                    .padding(horizontal = 32.dp)
                                     .padding(top = 32.dp),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 SchedulePickupText(text = currentDate.uberFormattedDate()) {
                                     datePickerDialogState.show()
                                 }
+                                Spacer(modifier = Modifier.height(16.dp))
                                 Divider()
                                 SchedulePickupText(text = currentTime.uberFormattedTime()) {
                                     timePickerDialogState.show()
                                 }
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Divider()
+                                SchedulePickupText(text = "People") {
+//                                    timePickerDialogState.show()
+                                }
+                                Spacer(modifier = Modifier.height(16.dp))
                             }
                         }
                     }
                 dateTimePickerSection(Modifier)
                 Spacer(modifier = Modifier.height(16.dp))
-                SelectableSettingGroupItem(
-                    title = "aaa",
-                    desc = "",
-                    icon = Icons.Outlined.Person
-                ) {
-
-                }
+//                SelectableSettingGroupItem(
+//                    title = "aaa",
+//                    desc = "",
+//                    icon = Icons.Outlined.Person
+//                ) {
+//
+//                }
                 Spacer(modifier = Modifier.height(16.dp))
 //                Text(text = "Admin")
-                SelectableSettingGroupItem(
-                    title = "aaa",
-                    desc = "",
-                    icon = Icons.Outlined.AccountCircle
-                ) {
-
-                }
+//                SelectableSettingGroupItem(
+//                    title = "aaa",
+//                    desc = "",
+//                    icon = Icons.Outlined.AccountCircle
+//                ) {
+//
+//                }
                 Spacer(modifier = Modifier.height(16.dp))
-                SelectableSettingGroupItem(
-                    title = "aaa",
-                    desc = "",
-                    icon = Icons.Outlined.AccountCircle
-                ) {
-
-                }
+//                SelectableSettingGroupItem(
+//                    title = "aaa",
+//                    desc = "",
+//                    icon = Icons.Outlined.AccountCircle
+//                ) {
+//
+//                }
                 LazyColumn(
                     contentPadding = PaddingValues(8.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
-                    content ={
+                    content = {
                         items(places) { place ->
                             PlacesToBookVerticalComponent(place = place)
                         }
@@ -168,12 +179,18 @@ fun SchedulePickupText(
     text: String,
     onClick: () -> Unit
 ) {
-    androidx.compose.material3.Text(
-        modifier = modifier.clickableWithRipple(onClick = onClick)
-            .padding(16.dp).fillMaxWidth(),
+    Text(
+        modifier = modifier
+            .clickableWithRipple(onClick = onClick)
+            .padding(8.dp)
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            ,
         text = text,
-        textAlign = TextAlign.Center
-    )
+        textAlign = TextAlign.Left,
+
+
+        )
 }
 
 

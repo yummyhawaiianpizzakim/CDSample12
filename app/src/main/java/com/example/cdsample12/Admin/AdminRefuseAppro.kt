@@ -55,12 +55,7 @@ fun AdminRefuseAppro(
             Spacer(modifier = Modifier.height(100.dp))
 
             Text(text = "Account")
-            SelectableSettingGroupItem(
-                title = "aaa",
-                desc = "",
-                icon = Icons.Outlined.Person
-            ) {
-            }
+
             LazyColumn(
                 contentPadding = PaddingValues(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -70,6 +65,11 @@ fun AdminRefuseAppro(
                     }
                 }
             )
+            SelectableSettingGroupItem(
+                title = "Open Door",
+
+            ) {
+            }
         }
     })
 

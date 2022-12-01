@@ -29,7 +29,7 @@ fun BookedLectureRoomItem(place: Place) {
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                    CheckIcon(onClick = { /*TODO*/ })
+                IconButtonExample(modifier = Modifier.padding(8.dp))
             }
         }
     }

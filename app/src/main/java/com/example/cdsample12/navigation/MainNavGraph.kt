@@ -36,7 +36,7 @@ fun MainNavGraph(navController: NavHostController) {
                     navController.navigate(RooteGraph.Admin.route)
                 },
                 onRMClick = {
-                    navController.navigate(RooteGraph.Admin.route)
+                    navController.navigate(AdminScreen.RoomManage.route)
 
                 }
             )

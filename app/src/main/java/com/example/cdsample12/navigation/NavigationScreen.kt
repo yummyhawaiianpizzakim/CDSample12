@@ -41,7 +41,11 @@ sealed class BottomBarScreen(
         title = "ReservingRoom",
         icon = Icons.Default.Home
     )
-
+    object LectureRoomManage : BottomBarScreen(
+        route = "LectureRoom_Manage",
+        title = "LectureRoomManage",
+        icon = Icons.Default.Home
+    )
 //    object AdminRefuseAppro : NavigationScreen(
 //        route = "AdminRefuse_Appro",
 //        title = "AdminRefuseAppro",
