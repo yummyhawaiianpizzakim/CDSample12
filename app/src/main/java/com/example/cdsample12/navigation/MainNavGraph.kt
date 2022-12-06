@@ -10,6 +10,7 @@ import androidx.navigation.navigation
 import com.example.cdsample12.Admin.AdminRefuseAppro
 import com.example.cdsample12.Admin.LectureRoomManage
 import com.example.cdsample12.RooteGraph
+import com.example.cdsample12.bottombar.ReservingInfor
 import com.example.cdsample12.bottombar.ReservingRoom
 import com.example.cdsample12.bottombar.SettingsAdmin
 import com.talhaoz.loginbottombarapp.ui.bottombar.HomeScreen
@@ -26,8 +27,8 @@ fun MainNavGraph(navController: NavHostController) {
         composable(route = BottomBarScreen.ReservingRoom.route) {
             ReservingRoom(navController = rememberNavController())
         }
-        composable(route = BottomBarScreen.ProfileScreen.route) {
-            ProfileScreen()
+        composable(route = BottomBarScreen.ReservingInfor.route) {
+            ReservingInfor()
         }
         composable(route = BottomBarScreen.SettingsAdminScreen.route) {
             SettingsAdmin(

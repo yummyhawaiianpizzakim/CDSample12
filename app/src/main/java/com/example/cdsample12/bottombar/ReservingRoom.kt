@@ -2,7 +2,6 @@ package com.example.cdsample12.bottombar
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Indication
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -10,10 +9,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.outlined.AccountCircle
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -26,15 +21,12 @@ import androidx.navigation.NavController
 import com.example.cdsample12.LectureRoom.Place
 import com.example.cdsample12.LectureRoom.places
 import com.example.cdsample12.UIitem.PlaceContent
-import com.example.cdsample12.UIitem.SelectableSettingGroupItem
 import java.util.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.DialogProperties
-import com.example.cdsample12.UIitem.DatePicker
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.MaterialDialogScope
 import com.vanpra.composematerialdialogs.MaterialDialogState
@@ -45,6 +37,8 @@ import com.vanpra.composematerialdialogs.datetime.time.timepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
 import java.time.LocalTime
+import com.chargemap.compose.numberpicker.*
+import com.example.cdsample12.UIitem.NumberpickerView
 
 @Composable
 fun ReservingRoom(
@@ -57,7 +51,9 @@ fun ReservingRoom(
 
     val datePickerDialogState = rememberMaterialDialogState()
     val timePickerDialogState = rememberMaterialDialogState()
+    val numberpickerDialog = remember { mutableStateOf(false) }
 
+    var numberpickerValue by rememberSaveable { mutableStateOf(1) }
     var currentDate by rememberSaveable { mutableStateOf(LocalDate.now()) }
     var currentTime by rememberSaveable { mutableStateOf(LocalTime.now()) }
 
@@ -73,7 +69,7 @@ fun ReservingRoom(
 
 //                Text(text = "Account",)
                 val dateTimePickerSection: @Composable (Modifier) -> Unit =
-                    remember(currentDate, currentTime) {
+                    remember(currentDate, currentTime,numberpickerValue) {
                         movableContentOf { modifier ->
                             Column(
                                 modifier = modifier
@@ -91,8 +87,11 @@ fun ReservingRoom(
                                 }
                                 Spacer(modifier = Modifier.height(16.dp))
                                 Divider()
-                                SchedulePickupText(text = "People") {
-//                                    timePickerDialogState.show()
+                                SchedulePickupText(text = "${numberpickerValue}") {
+                                    numberpickerDialog.value = true
+                                }
+                                if (numberpickerDialog.value) {
+                                    NumberpickerView(state = numberpickerDialog)
                                 }
                                 Spacer(modifier = Modifier.height(16.dp))
                             }
@@ -166,6 +165,9 @@ fun ReservingRoom(
                         )
                     ) { currentTime = it }
                 }
+
+
+
 
             }
         }
@@ -267,3 +269,5 @@ fun PlacesToBookVerticalComponent(place: Place) {
         }
     }
 }
+
+

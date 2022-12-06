@@ -23,7 +23,7 @@ fun BookedLectureRoomItem(place: Place) {
         shape = RoundedCornerShape(16.dp)
     ) {
         Row(modifier = Modifier.clickable { }) {
-            PlaceContent(place, Modifier.weight(1f))
+            PlaceContent(place,Modifier.weight(1f))
             Row(
                 modifier = Modifier
                     .padding(8.dp),

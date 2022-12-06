@@ -52,8 +52,11 @@ fun AdminRefuseAppro(
         Column(modifier = Modifier
             .padding(it)
             ) {
-            Spacer(modifier = Modifier.height(100.dp))
-
+            Spacer(modifier = Modifier.height(10.dp))
+            SelectableSettingGroupItem(
+                title = "Open Door",
+                ) {
+            }
             Text(text = "Account")
 
             LazyColumn(
@@ -65,11 +68,7 @@ fun AdminRefuseAppro(
                     }
                 }
             )
-            SelectableSettingGroupItem(
-                title = "Open Door",
 
-            ) {
-            }
         }
     })
 
