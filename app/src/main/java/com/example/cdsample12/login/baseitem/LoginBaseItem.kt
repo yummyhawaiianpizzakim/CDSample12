@@ -33,8 +33,8 @@ fun LoginBaseItem() {
     OutlinedTextField(
         value = emailValue.value,
         onValueChange = { emailValue.value = it },
-        label = { Text(text = "Phone") },
-        placeholder = { Text(text = "Enter the phone number") },
+        label = { Text(text = "Email") },
+        placeholder = { Text(text = "Enter the Email address") },
         singleLine = true,
         modifier = Modifier.fillMaxWidth(0.8f),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CDSample12</string>
+    <string name="ble_not_supported">ble_not_supported</string>
 </resources>

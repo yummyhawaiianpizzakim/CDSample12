@@ -1,8 +1,20 @@
 package com.example.cdsample12
 
+import android.Manifest
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothManager
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -22,9 +34,8 @@ import com.example.cdsample12.bottombar.SettingsAdmin
 import com.example.cdsample12.navigation.LoginNavGraph
 //import com.example.cdsample12.Admin.AdminScaffold
 import com.example.cdsample12.ui.theme.CDSample12Theme
-class MainActivity : ComponentActivity() {
 
-//    private val userViewModel by viewModel<UserViewModel>()
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +44,12 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 RootNavigationGraph(navController = rememberNavController())
             }
+
+
         }
     }
 }
+
 @Composable
 fun RootNavigationGraph(navController: NavHostController) {
     NavHost(
